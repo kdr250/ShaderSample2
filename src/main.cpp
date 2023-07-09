@@ -15,7 +15,10 @@ int main()
     // shader.loadFromFile("resources/shader/shader_time.frag", sf::Shader::Fragment);
     // shader.loadFromFile("resources/shader/shader_time2.frag", sf::Shader::Fragment);
     // shader.loadFromFile("resources/shader/shader_light.frag", sf::Shader::Fragment);
-    shader.loadFromFile("resources/shader/shader_light2.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_light2.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_light_move.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_light_move2.frag", sf::Shader::Fragment);
+    shader.loadFromFile("resources/shader/shader_light_move3.frag", sf::Shader::Fragment);
 
     sf::Texture texture;
     texture.create(window.getSize().x, window.getSize().y);
