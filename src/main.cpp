@@ -21,7 +21,12 @@ int main()
     // shader.loadFromFile("resources/shader/shader_light_move3.frag", sf::Shader::Fragment);
     // shader.loadFromFile("resources/shader/shader_multiple_light.frag", sf::Shader::Fragment);
     // shader.loadFromFile("resources/shader/shader_ring.frag", sf::Shader::Fragment);
-    shader.loadFromFile("resources/shader/shader_sample.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_sample.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_bw.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_bw2.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_bw3.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_kirakira.frag", sf::Shader::Fragment);
+    shader.loadFromFile("resources/shader/shader_kirakira2.frag", sf::Shader::Fragment);
 
     sf::Texture texture;
     texture.create(window.getSize().x, window.getSize().y);
