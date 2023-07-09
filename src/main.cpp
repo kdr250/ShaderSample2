@@ -9,7 +9,9 @@ int main()
                             sf::Style::Titlebar | sf::Style::Close);
 
     sf::Shader shader;
-    shader.loadFromFile("resources/shader/shader_green.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_green.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_coord.frag", sf::Shader::Fragment);
+    shader.loadFromFile("resources/shader/shader_coord2.frag", sf::Shader::Fragment);
 
     sf::Texture texture;
     texture.create(window.getSize().x, window.getSize().y);
@@ -18,6 +20,7 @@ int main()
     sprite.setTexture(texture);
     sprite.setPosition(sf::Vector2f(0.0f, 0.0f));
 
+    sf::Clock time;
     while (window.isOpen())
     {
         sf::Event event;
@@ -37,6 +40,9 @@ int main()
         }
 
         texture.update(window);
+
+        shader.setUniform("t", time.getElapsedTime().asSeconds());
+        shader.setUniform("r", sf::Glsl::Vec2(window.getSize().x, window.getSize().y));
 
         window.clear();
 
