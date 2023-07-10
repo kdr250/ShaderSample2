@@ -29,7 +29,8 @@ int main()
     // shader.loadFromFile("resources/shader/shader_kirakira2.frag", sf::Shader::Fragment);
     // shader.loadFromFile("resources/shader/shader_kirakira3.frag", sf::Shader::Fragment);
     // shader.loadFromFile("resources/shader/shader_revolve.frag", sf::Shader::Fragment);
-    shader.loadFromFile("resources/shader/shader_rect.frag", sf::Shader::Fragment);
+    // shader.loadFromFile("resources/shader/shader_rect.frag", sf::Shader::Fragment);
+    shader.loadFromFile("resources/shader/shader_character.frag", sf::Shader::Fragment);
 
     sf::Texture texture;
     texture.create(window.getSize().x, window.getSize().y);
