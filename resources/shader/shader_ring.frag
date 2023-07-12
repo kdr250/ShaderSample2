@@ -1,5 +1,4 @@
 #version 120
-precision mediump float;
 uniform float t; // time
 uniform vec2 r; // resolution
 
