@@ -76,9 +76,9 @@ int main()
                     }
                     else if (event.key.code == sf::Keyboard::Space)
                     {
-                        shaderIndex--;
-                        int outOfRange = (shaders.size() - shaderIndex - 1) / shaders.size();
-                        shaderIndex    = shaderIndex + (shaders.size() * outOfRange);
+                        shaderIndex =
+                            shaderIndex - 1
+                            + shaders.size() * ((shaders.size() - shaderIndex) / shaders.size());
                     }
             }
         }
