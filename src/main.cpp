@@ -46,6 +46,14 @@ int main()
     sprite.setTexture(texture);
     sprite.setPosition(sf::Vector2f(0.0f, 0.0f));
 
+    sf::Font font;
+    font.loadFromFile("resources/font/Roboto-Light.ttf");
+
+    sf::Text text;
+    text.setFont(font);
+    text.setFillColor(sf::Color::Blue);
+    text.setPosition(sf::Vector2f(10.0, 10.0));
+
     sf::Clock time;
     while (window.isOpen())
     {
@@ -62,9 +70,15 @@ int main()
                     {
                         window.close();
                     }
-                    else
+                    else if (event.key.code == sf::Keyboard::Enter)
                     {
                         shaderIndex = (shaderIndex + 1) % (int)shaders.size();
+                    }
+                    else if (event.key.code == sf::Keyboard::Space)
+                    {
+                        shaderIndex--;
+                        int outOfRange = (shaders.size() - shaderIndex - 1) / shaders.size();
+                        shaderIndex    = shaderIndex + (shaders.size() * outOfRange);
                     }
             }
         }
@@ -75,10 +89,13 @@ int main()
         shaders[shaderIndex].setUniform("r",
                                         sf::Glsl::Vec2(window.getSize().x, window.getSize().y));
 
+        text.setString(std::to_string(shaderIndex) + " " + shaderNames[shaderIndex]);
+
         window.clear();
 
         // Draw the sprite and apply shader
         window.draw(sprite, &shaders[shaderIndex]);
+        window.draw(text);
 
         window.display();
     }
