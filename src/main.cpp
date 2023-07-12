@@ -8,29 +8,36 @@ int main()
                             "Shader Smaple2",
                             sf::Style::Titlebar | sf::Style::Close);
 
-    sf::Shader shader;
-    // shader.loadFromFile("resources/shader/shader_green.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_coord.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_coord2.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_time.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_time2.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_light.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_light2.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_light_move.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_light_move2.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_light_move3.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_multiple_light.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_ring.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_sample.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_bw.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_bw2.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_bw3.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_kirakira.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_kirakira2.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_kirakira3.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_revolve.frag", sf::Shader::Fragment);
-    // shader.loadFromFile("resources/shader/shader_rect.frag", sf::Shader::Fragment);
-    shader.loadFromFile("resources/shader/shader_character.frag", sf::Shader::Fragment);
+    int shaderIndex                      = 0;
+    std::vector<std::string> shaderNames = {"shader_green.frag",
+                                            "shader_coord.frag",
+                                            "shader_coord2.frag",
+                                            "shader_time.frag",
+                                            "shader_time2.frag",
+                                            "shader_light.frag",
+                                            "shader_light2.frag",
+                                            "shader_light_move.frag",
+                                            "shader_light_move2.frag",
+                                            "shader_light_move3.frag",
+                                            "shader_multiple_light.frag",
+                                            "shader_ring.frag",
+                                            "shader_sample.frag",
+                                            "shader_bw.frag",
+                                            "shader_bw2.frag",
+                                            "shader_bw3.frag",
+                                            "shader_kirakira.frag",
+                                            "shader_kirakira2.frag",
+                                            "shader_kirakira3.frag",
+                                            "shader_revolve.frag",
+                                            "shader_rect.frag",
+                                            "shader_character.frag"};
+    std::vector<sf::Shader> shaders(shaderNames.size());
+
+    for (int i = 0; i < shaderNames.size(); i++)
+    {
+        std::string name = shaderNames[i];
+        shaders[i].loadFromFile("resources/shader/" + name, sf::Shader::Fragment);
+    }
 
     sf::Texture texture;
     texture.create(window.getSize().x, window.getSize().y);
@@ -55,18 +62,23 @@ int main()
                     {
                         window.close();
                     }
+                    else
+                    {
+                        shaderIndex = (shaderIndex + 1) % (int)shaders.size();
+                    }
             }
         }
 
         texture.update(window);
 
-        shader.setUniform("t", time.getElapsedTime().asSeconds());
-        shader.setUniform("r", sf::Glsl::Vec2(window.getSize().x, window.getSize().y));
+        shaders[shaderIndex].setUniform("t", time.getElapsedTime().asSeconds());
+        shaders[shaderIndex].setUniform("r",
+                                        sf::Glsl::Vec2(window.getSize().x, window.getSize().y));
 
         window.clear();
 
         // Draw the sprite and apply shader
-        window.draw(sprite, &shader);
+        window.draw(sprite, &shaders[shaderIndex]);
 
         window.display();
     }
