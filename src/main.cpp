@@ -30,7 +30,8 @@ int main()
                                             "shader_kirakira3.frag",
                                             "shader_revolve.frag",
                                             "shader_rect.frag",
-                                            "shader_character.frag"};
+                                            "shader_character.frag",
+                                            "mandelbrot.frag"};
     std::vector<sf::Shader> shaders(shaderNames.size());
 
     for (int i = 0; i < shaderNames.size(); i++)
